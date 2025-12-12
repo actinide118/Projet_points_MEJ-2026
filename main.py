@@ -11,8 +11,20 @@
 #
 
 import openpyxl
-
 import SimpleGraphics
+
+
+
+
+
+# initialisation #
+
+tableau_excel = "Coordonnées_points.xlsx"
+
+
+wb = openpyxl.Workbook()
+File = openpyxl.load_workbook(tableau_excel)
+Sheet = File.active
 
 
 
@@ -25,8 +37,10 @@ class Point:
         self.y = y # Position en y
 
     def draw(self):     
-        point = SimpleGraphics.circle(100, 100, 20)
-
+        for row in Sheet.iter_rows(min_row=2, values_only=True):
+            x_coord = row[0]
+            y_coord = row[1]
+            SimpleGraphics.draw_circle(x_coord, y_coord, 5, fill='red')
 
 
 
