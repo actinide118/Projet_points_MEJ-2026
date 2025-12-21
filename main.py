@@ -9,6 +9,8 @@
 # utilisation de libary : 
 # simplegraphics-python et openpyxl
 #
+import time
+
 from moyenneDesPoints import *
 import openpyxl
 
@@ -29,8 +31,10 @@ Sheet = File.active
 def setup():
     SimpleGraphics.resize(screen_width, screen_height)
     nuage = classes.PointCloud()
-    nuage.createRandomPoints(100000,screen_width,screen_height )
-    Moyenne(nuage)
+    nuage.createRandomPoints(1000,screen_width,screen_height)
+    nuage.drawAllPoints()
+    nuage.getPositions()
+    nuage.OptimizeCloud()
 if __name__ == "__main__":
         random.seed()
         setup()
