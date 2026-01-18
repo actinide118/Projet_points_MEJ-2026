@@ -1,28 +1,43 @@
 import random
-
 import SimpleGraphics
+
+
 from math import *
+import openpyxl
 from scipy.spatial import KDTree
+
+
+tableau_list_points = "ListPoint.xlsx"
+wb = openpyxl.Workbook()
+File_points = openpyxl.load_workbook(tableau_list_points)
+Sheet_points = File_points.active
+
 
 class Point:
     def __init__(self, position, color):
         self.position = position  # (x, y)
         self.color = color
+       
 
 class PointCloud:
     def __init__(self):
         # Dictionary: Point object -> its coordinates
         self.List_points = {}
 
-    def GetPoints(self, sheet):
-        for row in sheet.iter_rows(min_row=2, values_only=True):
-            self.addPoint((row[1], row[2]), "red")
+    def GetPoints(self, sheet_tableau):
+        for row in sheet_tableau.iter_rows(min_row=2, values_only=True):
+            if row[1] is not None and row[2] is not None:
+                self.addPoint((row[1], row[2]), "red")
+            
 
-    def addPoint(self, position, color):
+    def addPoint(self, position, color, ):
         p = Point(position, color)
         self.List_points[p] = position
         x, y = position
         self.drawSinglePoint(x, y, color)
+        
+        Sheet_points.append([len(self.List_points), x, y])
+        Sheet_points.parent.save(tableau_list_points)
 
     def drawAllPoints(self):
         for p in self.List_points:

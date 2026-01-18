@@ -9,32 +9,39 @@
 # utilisation de libary : 
 # simplegraphics-python et openpyxl
 #
-import time
+
+
 
 from moyenneDesPoints import *
 import openpyxl
 
-import classes
+
 from classes import *
+from Baricentre import *
 
 
 # initialisation #
 screen_width= 1200
 screen_height = 900
-tableau_excel = "Coordonnées_points.xlsx"
+
+tableau_excel = "EntreeDesPoints.xlsx"
+tableau_list_points = "ListPoint.xlsx"
 
 
 wb = openpyxl.Workbook()
-File = openpyxl.load_workbook(tableau_excel)
-Sheet = File.active
+File_tableau = openpyxl.load_workbook(tableau_excel)
+File_points = openpyxl.load_workbook(tableau_list_points)
+
+Sheet_tableau = File_tableau.active
+Sheet_points = File_points.active
 
 
 SimpleGraphics.resize(screen_width, screen_height)
-nuage = classes.PointCloud()
+nuage = PointCloud()
 
 def Input():
 
-    print("--------------------------------\n Séléctionner d'abord un paramètre Basique avant d'utiliser une méthode\n \n 1 - Basique : Afficher des points aléatoirement \n 2 - Basique : afficher les points du tableau \n \n 3 - Méthode : afficher la moyenne de ces points \n \n 10 - Système : Nettoyer les points \n 11 - Système : Quitter\n -------------------------------")
+    print("--------------------------------\n Séléctionner d'abord un paramètre Basique avant d'utiliser une méthode\n \n 1 - Basique : Afficher des points aléatoirement \n 2 - Basique : afficher les points du tableau \n \n 3 - Méthode : afficher la moyenne de ces points \n 4 - Méthode : afficher le baricentre de ces points \n \n 10 - Système : Nettoyer les points \n 11 - Système : Quitter\n -------------------------------")
     while True:
             reponse = str(input("Séléctionner un paramètre : "))
 
@@ -44,16 +51,23 @@ def Input():
                 setup()
 
             elif reponse == "2":
-                  nuage.GetPoints(Sheet)
+                  nuage.GetPoints(Sheet_tableau)
                   setup()
                     
             elif reponse == "3":
                   Moyenne(nuage)
                   setup()
 
+            elif reponse == "4":
+                  baricentre(nuage)
+                  setup()
+
             elif reponse == "10":
                   SimpleGraphics.clear()
-                 
+                  Sheet_points.delete_rows(2, Sheet_points.max_row)
+                  Sheet_points.parent.save(tableau_list_points)
+
+                                   
             elif reponse == "11":
                   print("Fermeture du programme...")
                   SimpleGraphics.close()
@@ -61,9 +75,7 @@ def Input():
                   
 def setup():       
         nuage.drawAllPoints()
-        nuage.getPositions()
-        nuage.OptimizeCloud()   
-
+        nuage.getPositions()        
 
 if __name__ == "__main__":
         random.seed()

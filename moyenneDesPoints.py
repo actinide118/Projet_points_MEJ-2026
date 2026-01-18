@@ -7,4 +7,4 @@ def Moyenne(nuage: PointCloud):
         moyenne_y += i.position[1]
     moyenne_x = moyenne_x/ len(nuage.List_points)
     moyenne_y = moyenne_y/ len(nuage.List_points)
-    nuage.drawSinglePoint(moyenne_x, moyenne_y ,"grey")
+    nuage.drawSinglePoint(moyenne_x, moyenne_y ,"green")
