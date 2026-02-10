@@ -47,7 +47,7 @@ def Input():
           4 - Méthode : afficher le baricentre de ces points \n \n
           10 - Système : Nettoyer les points \n 
           11- la méthode du point deja présent \n 
-          21 - Système : Quitter\n -------------------------------""")
+          12 - Système : Quitter\n -------------------------------""")
     while True:
             reponse = str(input("Séléctionner un paramètre : "))
 

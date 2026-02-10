@@ -13,3 +13,4 @@ def PointDejaPresent(PointCloud):
     print(best_id," ",best_point)
     x,y = best_point
     PointCloud.drawSinglePoint(x, y, "blue")
+    
