@@ -22,6 +22,7 @@ from Baricentre import *
 from moyenneDesPoints import *
 from PointDejaPresent import *
 from EnveloppeConvex import *
+from ProjectionMethods import *
 
 # --- Configuration ---
 screen_width = 1200
@@ -80,6 +81,8 @@ functions_list = [
     ("calculer Moyenne", Moyenne, "NUAGE"),
     ("méthode du point deja présent", PointDejaPresent, "NUAGE"),
     ("Afficher Enveloppe Convexe", EnveloppeConvex, "NUAGE"),
+    ("Projection Méthode 1", ProjectionMethod1, "NUAGE"),
+    ("Projection Méthode 2", ProjectionMethod2, "NUAGE"),
     ("Effacer Tout", ClearScreen, None),
     ("Quitter", QuitterProgramme, None)
 ]

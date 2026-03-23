@@ -29,20 +29,34 @@ def convex_hull(points):
     hull = lower[:-1] + upper[:-1]
 
     # Points non dans l'enveloppe
+    Points_hull = [p for p in points if p in hull]
     points_restants = [p for p in points if p not in hull]
 
-    return hull, points_restants
+    return hull, points_restants, Points_hull
 
 def EnveloppeConvex(nuage: PointCloud):
     points = list(nuage.List_points.keys())
     points_restants = points
 
     while len(points_restants) > 1:
-        hull, points_restants = convex_hull(points_restants)
+        hull, points_restants, Points_hull = convex_hull(points_restants)
 
-        SimpleGraphics.setColor(random.choice(["red", "green", "blue", "yellow", "cyan", "magenta", "orange", "purple", "brown", "gray", "black"]))
+        SimpleGraphics.setColor(random.choice(["red", "green", "blue", "yellow", "cyan", "magenta", "orange", "purple", "brown", "gray", "black", "pink"]))
         
         for i in range(len(hull)):
             p1 = hull[i]
             p2 = hull[(i + 1) % len(hull)]
             SimpleGraphics.line(p1.position[0], p1.position[1], p2.position[0], p2.position[1])
+
+
+    SimpleGraphics.setColor("black")
+    Point_moyenne = [point.position for point in Points_hull]
+    moyenne_x = 0
+    moyenne_y = 0
+    for point in Point_moyenne:
+        moyenne_x += point[0]
+        moyenne_y += point[1]
+    moyenne_x = moyenne_x / len(Point_moyenne)
+    moyenne_y = moyenne_y / len(Point_moyenne)
+    nuage.drawSinglePoint(moyenne_x, moyenne_y, "black")
+
