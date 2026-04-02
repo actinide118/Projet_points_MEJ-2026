@@ -23,6 +23,7 @@ from moyenneDesPoints import *
 from PointDejaPresent import *
 from EnveloppeConvex import *
 from ProjectionMethods import *
+from Median import *
 
 # --- Configuration ---
 screen_width = 1200
@@ -81,9 +82,9 @@ functions_list = [
     ("calculer Moyenne", Moyenne, "NUAGE"),
     ("méthode du point deja présent", PointDejaPresent, "NUAGE"),
     ("Afficher Enveloppe Convexe", EnveloppeConvex, "NUAGE"),
-    ("Projection Méthode 1", ProjectionMethod1, "NUAGE"),
-    ("Projection Méthode 2", ProjectionMethod2, "NUAGE"),
-    ("Effacer Tout", ClearScreen, None),
+    ("Médiane", Median, "NUAGE"),
+    ("Projection", ProjectionMethod, "NUAGE"),
+    ("Effacer Tout", ClearScreen, None), 
     ("Quitter", QuitterProgramme, None)
 ]
 
@@ -91,7 +92,7 @@ class Window(tkinter.Tk):
     def __init__(self, funcs):
         super().__init__()
         self.title("Math en Jeans 2026")
-        self.geometry("400x600")
+        self.geometry("400x650")
 
         # UI Header
         Label(self, text="Interface de Contrôle", font=("Arial", 14, "bold")).pack(pady=10)
