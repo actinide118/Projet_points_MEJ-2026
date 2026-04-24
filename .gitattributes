@@ -1,0 +1,2 @@
+Windows_builde filter=lfs diff=lfs merge=lfs -text
+Windows_builde/main.exe filter=lfs diff=lfs merge=lfs -text
