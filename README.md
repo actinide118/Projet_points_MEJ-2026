@@ -17,6 +17,13 @@ pour l'instant nous avons trouver X méthodes différentes:
 
 # installation
 créer un environnement virtuel python:
+
 `python -m venv . `
+
 installer les dépendances:
+
 `./bin/python ./bin/pip install -r requirements.txt`
+
+et s'amuser:
+
+`./bin/python main.py `
